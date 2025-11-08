@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet", href="{{url_for('static', filename='css/main.css')}}">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <!-- <script src="https://kit.fontawesome.com/c1b9ae5c8f.js" crossorigin="anonymous"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js" crossorigin="anonymous"></script>
+  <title>{% block title%}Nobhub home{% endblock %}</title>
+</head>
+{%block body %}
+<body class="chat-body light-theme">
+  {%block left_side%}
+  <!-- Left Panel: Contacts & Buttons -->
+  <div class="left-side home-leftside light-theme">
+            <div class="chat-header">
+              <h1 class="title garamond-font">
+                <!-- <ion-icon name="mail"></ion-icon> -->
+                <ion-icon name="chatbubble-ellipses"></ion-icon>
+                <i>Nobhub</i>
+              </h1>
+              <ion-icon name="menu-outline" class="menu-btn"></ion-icon>
+                    <div class="menu light-theme">
+                      <a href="/home" class="chat-link light-theme">
+                        <div class="menu-options">
+                            <ion-icon name="home-outline"></ion-icon>
+                            <p>Home</p>
+                        </div>
+                      </a>
+                      <a href="/profile" class="chat-link light-theme">
+                        <div class="menu-options">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <p>Profile</p>
+                        </div>
+                      </a>
+                      <a href="/settings" class="chat-link light-theme">
+                        <div class="menu-options">
+                            <ion-icon name="settings-outline"></ion-icon>
+                            <p>Settings</p>
+                        </div>
+                      </a>
+
+                      <a href="/logout" class="chat-link light-theme">
+                        <div class="menu-options red-clr">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            <p>Sign out</p>
+                        </div>
+                      </a>
+                    </div>
+
+                    <div class="add-contact">
+                        <a href="users">
+                        <ion-icon name="add"></ion-icon>
+                        </a>
+                    </div>
+            </div>
+
+                
+  
+    
+      <div class="chat-main">
+
+      <form action="/search" method="GET" >
+        <input type="text" name="search" id="search" class="search-bar margin-inline-start middle-light-theme" placeholder="Search Nobhub" >
+      </form>
+            
+
+    
+    
+
+  {% for contact in contacts %}
+  {% if contact.contact_name in ['N.O.B', 'Dennis'] %}
+    <a href="/chat/AI/{{ contact.id }}" class="chat-link middle-light-theme">
+      <div class="contact">
+        <img src="{{ url_for('static', filename=contact.contact_image_path) }}" class="contact-proile-pic", alt="Contact Profile Picture">
+        <div class="">
+
+          <p class="contact-name">{{contact.contact_name}}</p>
+          <p class="contact-last-message">{{ decrypt_user_message(contact.last_message) }}</p>
+        </div>
+      </div>
+    </a>
+        {% else %}
+    <a href="/chat/{{ contact.id }}" class="chat-link light-theme">
+      <div class="contact">
+        <img src="{{ url_for('static', filename=contact.contact_image_path) }}" class="contact-proile-pic", alt="Contact Profile Picture">
+        <div class="">
+
+          <p class="contact-name">{{contact.contact_name}}</p>
+          <p class="contact-last-message">{{ decrypt_user_message(contact.last_message) }}</p>
+        </div>
+      </div>
+    </a>
+  {% endif %}
+  {% endfor %}
+  </div>
+  </div>
+  {% endblock %}
+  {% block right_side %}
+  <!-- Right Panel: Empty Chat View -->
+  <div class="right-side home-rightside middle-light-theme">
+          <div class="chat-header">
+              
+          </div>
+          <div class="chat-main">
+              <div class="no-message-div">
+                  <div class="no-message">
+                      <h2 class="garamond-font">Select a contact to start chatting</h2>
+                      <p>No messages selected</p>
+                  </div>
+              </div>
+          </div>
+      
+  </div>
+  {% endblock %}
+
+
+<script src="{{ url_for('static', filename='scripts/scripts.js') }}"></script>
+
+  
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,68 @@
+{% extends 'home.html' %}
+{% block title%}Nobhub Profile{% endblock %}
+{% block body %}
+
+<body class="middle-light-theme">
+    <main class="forms-main middle-light-theme">
+        <div class="forms light-theme">
+            <h1 class="title garamond-font"> 
+                <ion-icon name="pencil"></ion-icon>
+                <i>Edit Profile</i>
+            </h1> 
+
+            <form action="" method="POST" class="form" enctype="multipart/form-data">
+                <a href="/home" class=""><ion-icon name="arrow-back-outline"></ion-icon></a>
+                <div class="profile-pic">
+                <img src="{{url_for('static', filename=user.user_image_path)}}" alt="profilePic" class="profile-pic">
+                
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+            
+                <div class="error-message red-clr">
+                    {{messages[0] }}
+                </div>
+                {% endif %}
+            {% endwith %}
+            
+            {{edit_form.hidden_tag()}}
+                <!-- <label class="">Profile Pic</label> -->
+                    {{ edit_form.profile_pic() }}
+                {% for error in edit_form.profile_pic.errors%}
+                    <div class="error-message red-clr">
+                        {{error}}
+                    </div>
+                {%endfor%}
+                    </div>
+                <label for="username" class="">Username</label>
+                <!-- <input type="text" name="username" id="username" placeholder="username" class="forms-input light-theme" required oninvalid="this.setCustomValidity('Username is required')" oninput="this.setCustomValidity('')"> -->
+                {{ edit_form.username(id="username", class="forms-input light-theme", placeholder="Username")}}
+                <label for="user_email" class="">Email</label>
+                <!-- <input type="email" name="user_email" id="user_email" placeholder="Email" class="forms-input light-theme" required oninvalid="this.setCustomValidity('Email is required')" oninput="this.setCustomValidity('')"> -->
+                {{ edit_form.email(id="user_email", class="forms-input light-theme", placeholder="Email")}}
+
+                            {% for error in edit_form.email.errors %}
+                        <p>
+                                {{ error }}
+                                <br>
+                        </p>
+                                {% endfor%}
+        
+                <label for="number" class="">Phone Number</label>
+                <!-- <input type="text" name="number" id="number" placeholder="" class="forms-input light-theme"> -->
+                {{ edit_form.phoneNumber(id="number", class="forms-input light-theme", placeholder="Phone Number")}}
+                
+                <label for="number" class="">About</label>
+                <!-- <input type="text" name="number" id="number" placeholder="" class="forms-input light-theme"> -->
+                {{ edit_form.about(id="about", class="forms-input light-theme", placeholder="")}}
+                
+            
+                <!-- <button type="submit" class="btn add-btn"> Save </button> -->
+                {{ edit_form.edit(class="button1 forms-button")}}
+            </form>
+            
+        </div>
+        
+    </main>
+    <script src="{{ url_for('static', filename='scripts/scripts.js') }}"></script>
+</body>
+{% endblock %}

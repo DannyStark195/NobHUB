@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title%}NobHUB Request Reset{% endblock %}
+{% block body %}
+
+<main class="forms-main ">
+        
+    
+    <div class="forms light-theme">
+        <h1 class="title garamond-font"> 
+            <ion-icon name="pencil"></ion-icon>
+            <i>Reset request</i>
+        </h1> 
+    
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="error-message red-clr" >
+                {{messages[0] }}
+            </div>
+            {% endif %}
+        {% endwith %}
+    
+        <form action="" method="POST" class="form">
+            {{ reset_form.hidden_tag() }}
+            {{reset_form.email.label(for="email", class="")}} 
+                {{ reset_form.email(class="forms-input", id="email", placeholder="Email", oninvalid="this.setCustomValidity('Username is required')", oninput="this.setCustomValidity('')")}}
+            
+            {{ reset_form.request(class="button1 forms-button", id="login-btn")}}
+            
+        </form>
+        
+    </div>
+    
+
+</main>
+
+{% endblock %}

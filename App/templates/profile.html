@@ -1,0 +1,35 @@
+{% extends 'home.html' %}
+{% block title%}Nobhub Profile{% endblock %}
+{% block body %}
+<body class="middle-light-theme">
+    <main class="forms-main middle-light-theme">
+        <div class="forms light-theme">
+            <h1 class="title garamond-font"> 
+                <ion-icon name="person-outline"></ion-icon>
+                <i>Profile</i>
+            </h1> 
+        
+        <div>
+            <a href="/home" class=""><ion-icon name="arrow-back-outline"></ion-icon></a>
+            <div class="profile-pic">
+                <img src="{{url_for('static', filename=user.user_image_path)}}" class="profile-pic" alt="profilePic">
+            </div>
+
+            <p>Username</p>
+            <p class="forms-input">{{ user.username }}</p>
+            
+            <p>Email</p>
+            <p class="forms-input">{{ user.user_email }}</p>
+            
+            <p>Phone Number</p>
+            <p class="forms-input" >{{ user.user_number }}</p>
+
+            <p>About</p>
+            <p class="forms-input" > {{user.user_about}}</p>
+            <a href="/edit_profile"><button type="" class="button1 forms-button">Edit</button></a>
+        </div>  
+        </div>
+    </main>
+     <script src="./static/scripts/scripts.js"></script>
+</body>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'home.html' %}
+{% block title%}Nobhub || Users{% endblock %}
+{%block left_side%}
+<div class="left-side full-screen light-theme">
+        
+        <form action="/search" method="GET" class="search-form full-screen padding-block-1rem">
+                    <input type="text" name="search" id="search" class="search-bar middle-light-theme" placeholder="Search Nobhub" >
+        </form>  
+       
+        <div class="chat-main padding-inline">
+          {% if users %}
+            {% for user in users %}
+              <a href="/add/{{user.id}}" class="chat-link middle-light-theme">
+                <div class="contact">
+                  <img src="{{ url_for('static', filename=user.user_image_path) }}" class="contact-proile-pic", alt="Contact Profile Picture">
+                  <div class="">
+                    <p class="contact-name">{{user.username}}</p>
+                    <p class="contact-last-message">{{user.user_about}}</p>
+                  </div>
+                </div>
+              </a>
+            
+            {% endfor %}  
+        </div>
+
+        {%else%}
+            <div class="no-message">
+                <h2 class="garamond-font"><i>'{{ users_to_find}}' Not found</i></h2>
+                
+            </div>
+      {% endif %}
+      </div>
+{% endblock %}
+{% block right_side %}
+{% endblock %}

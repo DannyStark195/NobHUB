@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% block title%}Nobhub || Signup{% endblock %}
+{% block body %}
+
+<main class="forms-main ">
+        
+    
+    <div class="forms light-theme">
+            <h1 class="title garamond-font"> 
+                <ion-icon name="pencil"></ion-icon>
+                <i>Register</i>
+            </h1> 
+    <!-- <img src="" alt="profilePic"> -->
+    
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="error-message red-clr" >
+                {{messages[0] }}
+            </div>
+            {% endif %}
+        {% endwith %}
+        
+    <form action="" method="POST" class="form" enctype="multipart/form-data">
+        {{signup_form.hidden_tag()}}
+            <!-- <label class="form-label brand-clr-b">Profile Pic</label>
+                {{ signup_form.profile_pic() }}
+            {% for error in signup_form.profile_pic.errors %}
+                <div class="error-message">
+                        {{ error }}            
+                </div>
+            {% endfor%} -->
+
+            <label for="username" class="">Username</label>
+            {{ signup_form.username(id="username", class="forms-input", placeholder="Username", oninvalid="this.setCustomValidity('Username is required')", oninput="this.setCustomValidity('')")}}
+            {% for error in signup_form.username.errors %}
+                <div class="error-message red-clr">
+                    {{ error }}            
+                </div>
+            {% endfor%}
+           <label for="user_email" class="">Email</label>
+            {{ signup_form.email(id="user_email", class="forms-input", placeholder="Email", oninvalid="this.setCustomValidity('Email is required')", oninput="this.setCustomValidity('')")}}
+            
+            {% for error in signup_form.email.errors %}
+                <div class="error-message red-clr">
+                    {{ error }}            
+                </div>
+            {% endfor%}
+                        
+            <!-- <label for="number" class="form-label brand-clr-b">Phone Number</label> -->
+            <!-- <input type="text" name="number" id="number" placeholder="" class="task-input"> -->
+            <!-- {{ signup_form.phoneNumber(id="number", class="task-input", placeholder="Phone Number", oninvalid="this.setCustomValidity('Username is required')", oninput="this.setCustomValidity('')")}} -->
+
+             <label for="password0" class="">Password </label>
+                <div class="password">
+                    <input type="checkbox" id="togglePassword" class="password-toggle">
+            <label for="togglePassword" class="toggle-eye open">
+                <ion-icon name="eye-outline"></ion-icon>
+            </label>
+            <label for="togglePassword" class="toggle-eye close brand-clr-b">
+                <ion-icon name="eye-off-outline"></ion-icon>
+            </label>
+                <!-- <input type="password" name="password0" id="password0" placeholder="Password" class="password-input" required > -->
+                    {{ signup_form.password0(id="password0", class="forms-input password-input", placeholder="Password", oninvalid="this.setCustomValidity('Password is required')", oninput="this.setCustomValidity('')")}}
+                </div>
+                 
+                    {% for error in signup_form.password0.errors %}
+                            <div class="error-message red-clr">
+                            </div>
+                            {% endfor%}
+    
+                    {% for error in signup_form.password1.errors %}
+                        <div class="error-message red-clr">
+                                {{ error }} 
+                            </div>
+                            {% endfor%}
+            <label for="password1" class="">Confirm Password </label>
+            <div class="password">
+                <!-- <input type="password" name="password1" id="password1" placeholder="Confirm PassWord" class="password-input" required oninvalid="this.setCustomValidity('PassWord is required')" oninput="this.setCustomValidity('')"> -->
+                {{ signup_form.password1(id="password1", class="forms-input password-input", placeholder="Confirm Password", oninvalid="this.setCustomValidity('PassWord is required')", oninput="this.setCustomValidity('')")}}
+            </div>
+          
+             {{ signup_form.submit(class="button1 forms-button", id="signup-btn")}}
+             <div class="or-divider">or</div>
+                <div class="google-div">
+                    <input type="button", value="Signup with Google", class="forms-button google-button" onclick="window.location.href='/login/google'">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32" viewBox="0 0 48 48" class="google-icon">
+                    <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
+                    </svg>
+                </div>
+             <p class="forms-question">Already have an account? <a href="/login">Login</a></p>
+        </form>
+        
+    </div>
+    
+
+</main>
+{%block script%} 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.getElementById('togglePassword');
+    const password = document.getElementById('password0');
+    const password1 = document.getElementById('password1');
+    const eyeOpen = document.querySelector('.toggle-eye.open');
+    const eyeClose = document.querySelector('.toggle-eye.close');
+
+    function updateEye() {
+        if (password.type === 'password') {
+            eyeOpen.style.display = 'block';
+            eyeClose.style.display = 'none';
+        } else {
+            eyeOpen.style.display = 'none';
+            eyeClose.style.display = 'block';
+        }
+        if (password1.type === 'password') {
+            eyeOpen.style.display = 'block';
+            eyeClose.style.display = 'none';
+        } else {
+            eyeOpen.style.display = 'none';
+            eyeClose.style.display = 'block';
+        }
+    }
+
+    toggle.addEventListener('change', function() {
+        if (toggle.checked) {
+            password.type = 'password';
+            password1.type = 'password';
+        } else {
+            password.type = 'text';
+            password1.type = 'text';
+        }
+        updateEye();
+    });
+
+    // Initialize eye icons
+    updateEye();
+});
+</script>
+{% endblock %}
+
+{% endblock %}

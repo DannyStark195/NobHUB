@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet", href="{{url_for('static', filename='css/main.css')}}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js" crossorigin="anonymous" defer></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
+
+    <title>
+        {%block title%}Nobhub{% endblock %}
+    </title>
+</head>
+
+<body>
+ 
+
+ {%block body %} {% endblock %} 
+
+{%block script%} 
+<script src="{{ url_for('static', filename='scripts/scripts.js') }}"></script>
+{% endblock %}
+
+</body>
+
+</html>
