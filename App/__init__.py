@@ -67,5 +67,8 @@ def create_app():
     
     with app.app_context():
         nob_db.create_all()
-    
+    @app.route('/_health')
+    def _health():
+        return 'ok', 200
+
     return app

@@ -1,7 +1,8 @@
 import eventlet
 eventlet.monkey_patch()  # MUST run before other imports
-from App import create_app, socketio
 import os
+
+from App import create_app, socketio
 #Run the flask application
 app = create_app()
 
