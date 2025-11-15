@@ -160,6 +160,7 @@ def authorize_google():
             nob_db.session.add(new_user)
                     
             nob_db.session.commit()
+            user_or_email = new_user
         login_user(user_or_email)
                  
     except Exception as e:
