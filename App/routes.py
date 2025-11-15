@@ -439,3 +439,7 @@ def get_delete_message(id):
 # def page_not_found(e):
 #     print("404")
 #     return render_template('404.html'), 404
+
+routes.route('/_health')
+def _health():
+    return 'ok', 200
